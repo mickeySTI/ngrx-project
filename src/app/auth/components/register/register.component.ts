@@ -1,6 +1,9 @@
+import { isSubmittingSelector } from './../../state/auth.selectors';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppStateInterface } from 'src/app/shared/state/app-state.intereface';
 
 import { onRegister } from './../../state/register.actions';
 
@@ -11,11 +14,16 @@ import { onRegister } from './../../state/register.actions';
 })
 export class RegisterComponent implements OnInit {
     form: FormGroup;
+    isSubmitting$: Observable<boolean>;
 
-    constructor(private fb: FormBuilder, private store: Store) {}
+    constructor(
+        private fb: FormBuilder,
+        private store: Store<AppStateInterface>
+    ) {}
 
     ngOnInit(): void {
         this.initializeForm();
+        this.initializezValues();
     }
 
     initializeForm() {
@@ -24,6 +32,10 @@ export class RegisterComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required]],
         });
+    }
+
+    initializezValues() {
+        this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
     }
 
     onSubmit() {

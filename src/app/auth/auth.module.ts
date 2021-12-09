@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import * as authReducer from './state/reducer/auth.reducer';
+import { authReducer } from './state/reducer/auth.reducer';
 
 @NgModule({
     declarations: [RegisterComponent],
