@@ -1,3 +1,4 @@
+import { PersistanceService } from './../shared/services/persistance.service';
 import { BackendErrorsModule } from './../shared/backend-errors/backend-errors.module';
 import { Registerffects } from './state/register.effects';
 import { EffectsModule } from '@ngrx/effects';
@@ -24,6 +25,6 @@ import { authReducer } from './state/reducer/auth.reducer';
         HttpClientModule,
         ReactiveFormsModule,
     ],
-    providers: [AuthService],
+    providers: [AuthService, PersistanceService],
 })
 export class AuthModule {}
