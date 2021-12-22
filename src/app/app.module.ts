@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,8 +24,10 @@ import { environment } from 'src/environments/environment';
             maxAge: 25,
             logOnly: environment.production,
         }),
+        EffectsModule.forRoot([]),
     ],
     providers: [],
+    exports: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

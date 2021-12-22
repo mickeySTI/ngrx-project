@@ -1,4 +1,10 @@
-import { isSubmittingSelector } from './../../state/auth.selectors';
+import { BackendErrorsInterface } from 'src/app/shared/models/backend-errors.interface';
+import { RegisterRequestInterface } from './../../models/register-request.interface';
+
+import {
+    isSubmittingSelector,
+    validationErrorsSelector,
+} from './../../state/auth.selectors';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
@@ -15,6 +21,7 @@ import { onRegister } from './../../state/register.actions';
 export class RegisterComponent implements OnInit {
     form: FormGroup;
     isSubmitting$: Observable<boolean>;
+    backendErrors$: Observable<BackendErrorsInterface | null>;
 
     constructor(
         private fb: FormBuilder,
@@ -29,18 +36,20 @@ export class RegisterComponent implements OnInit {
     initializeForm() {
         this.form = this.fb.group({
             username: ['', [Validators.required]],
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required]],
             password: ['', [Validators.required]],
         });
     }
 
     initializezValues() {
         this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+        this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
     }
 
     onSubmit() {
-        if (this.form.valid) {
-            this.store.dispatch(onRegister(this.form.value));
-        }
+        const request: RegisterRequestInterface = {
+            user: this.form.value,
+        };
+        this.store.dispatch(onRegister({ request }));
     }
 }
