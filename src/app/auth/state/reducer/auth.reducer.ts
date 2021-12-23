@@ -1,5 +1,5 @@
+import { onLoginSuccess, onLoginFailure } from './../login.actions';
 import { BackendErrorsInterface } from 'src/app/shared/models/backend-errors.interface';
-import { HttpErrorResponse } from '@angular/common/http';
 import { CurrentUserInterface } from './../../../shared/models/current-user.interface';
 import {
     onRegister,
@@ -7,6 +7,7 @@ import {
     onRegisterSucess,
 } from './../register.actions';
 import { Action, createReducer, on } from '@ngrx/store';
+import { onLogin } from '../login.actions';
 
 // state interface
 export interface AuthStateInterface {
@@ -46,6 +47,31 @@ const _authReducer = createReducer(
 
     on(
         onRegisterFailure,
+        (state, action): AuthStateInterface => ({
+            ...state,
+            isSubmitting: false,
+            validationErrors: action.errors,
+        })
+    ),
+
+    on(
+        onLogin,
+        (state): AuthStateInterface => ({
+            ...state,
+            isSubmitting: true,
+            validationErrors: null,
+        })
+    ),
+    on(
+        onLoginSuccess,
+        (state, action): AuthStateInterface => ({
+            ...state,
+            isLoggedIn: true,
+            currentUser: action.currentUser,
+        })
+    ),
+    on(
+        onLoginFailure,
         (state, action): AuthStateInterface => ({
             ...state,
             isSubmitting: false,

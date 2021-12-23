@@ -9,7 +9,7 @@ import {
 } from './register.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatMap, switchMap, map, catchError, tap } from 'rxjs/operators';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 

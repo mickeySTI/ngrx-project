@@ -12,9 +12,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authReducer } from './state/reducer/auth.reducer';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-    declarations: [RegisterComponent],
+    declarations: [RegisterComponent, LoginComponent],
     imports: [
         CommonModule,
         EffectsModule.forFeature([Registerffects]),
