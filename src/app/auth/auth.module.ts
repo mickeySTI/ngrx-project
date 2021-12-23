@@ -13,12 +13,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authReducer } from './state/reducer/auth.reducer';
 import { LoginComponent } from './components/login/login.component';
+import { LoginEffects } from './state/login.effects';
 
 @NgModule({
     declarations: [RegisterComponent, LoginComponent],
     imports: [
         CommonModule,
-        EffectsModule.forFeature([Registerffects]),
+        EffectsModule.forFeature([Registerffects, LoginEffects]),
         StoreModule.forFeature('auth', authReducer),
         AuthRoutingModule,
         BackendErrorsModule,
