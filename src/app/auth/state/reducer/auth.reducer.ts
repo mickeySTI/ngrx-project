@@ -67,6 +67,7 @@ const _authReducer = createReducer(
         (state, action): AuthStateInterface => ({
             ...state,
             isLoggedIn: true,
+            isSubmitting: false,
             currentUser: action.currentUser,
         })
     ),

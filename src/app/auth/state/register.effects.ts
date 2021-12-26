@@ -27,17 +27,13 @@ export class Registerffects {
                         );
                         return onRegisterSucess({ currentUser });
                     }),
-
-                    tap(() => {
-                        this.router.navigateByUrl('/');
-                    }),
-                    catchError((errorResponse: HttpErrorResponse) => {
-                        return of(
+                    catchError((errorResponse: HttpErrorResponse) =>
+                        of(
                             onRegisterFailure({
                                 errors: errorResponse.error.errors,
                             })
-                        );
-                    })
+                        )
+                    )
                 );
             })
         )

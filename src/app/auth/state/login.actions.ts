@@ -10,11 +10,11 @@ export const onLogin = createAction(
 );
 
 export const onLoginSuccess = createAction(
-    ActionTypes.LOGIN,
+    ActionTypes.LOGIN_SUCCESS,
     props<{ currentUser: CurrentUserInterface }>()
 );
 
 export const onLoginFailure = createAction(
-    ActionTypes.LOGIN,
+    ActionTypes.LOGIN_FAILURE,
     props<{ errors: BackendErrorsInterface }>()
 );

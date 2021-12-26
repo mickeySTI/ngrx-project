@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign In</h1>
+                <p class="text-xs-center">
+                    <a [routerLink]="['/register']">Need an Account?</a>
+                </p>
+                <div class="error-messages">
+                    <ul *ngIf="form.touched || formInvalid">
+                        <li *ngIf="form.controls.email.errors?.required">
+                            email is blank
+                        </li>
+                        <li *ngIf="form.controls.password.errors?.required">
+                            password is blank
+                        </li>
+                        <li *ngIf="(backendErrors$ | async) && !formInvalid">
+                            Invalid Email/Password
+                        </li>
+                    </ul>
+                </div>
+
+                <form [formGroup]="form" (ngSubmit)="validateForm()">
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input
+                                required
+                                type="email"
+                                class="form-control form-control-lg"
+                                placeholder="Email"
+                                formControlName="email"
+                            />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input
+                                required
+                                type="password"
+                                class="form-control form-control-lg"
+                                placeholder="Password"
+                                formControlName="password"
+                            />
+                        </fieldset>
+                        <button
+                            [disabled]="isSubmitting$ | async"
+                            class="btn btn-lg btn-primary pull-xs-right"
+                            type="submit"
+                        >
+                            Sign In
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

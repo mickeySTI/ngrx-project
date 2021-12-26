@@ -42,12 +42,14 @@ export class LoginEffects {
         )
     );
 
-    onLoginSuccess$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(onLoginSuccess),
-            tap(() => {
-                this.router.navigateByUrl('/');
-            })
-        )
+    onLoginSuccess$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(onLoginSuccess),
+                tap(() => {
+                    this.router.navigateByUrl('/');
+                })
+            ),
+        { dispatch: false }
     );
 }
