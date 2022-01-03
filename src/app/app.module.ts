@@ -1,3 +1,4 @@
+import { TopBarModule } from './shared/top-bar/top-bar.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CommonModule,
         HttpClientModule,
         AuthModule,
+        TopBarModule,
         AppRoutingModule,
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({
