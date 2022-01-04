@@ -1,3 +1,4 @@
+import { GetCurrentUserEffects } from './state/get-current-user.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersistanceService } from './../shared/services/persistance.service';
 import { BackendErrorsModule } from './../shared/backend-errors/backend-errors.module';
@@ -24,7 +25,11 @@ import { MatCommonModule } from '@angular/material/core';
         MatInputModule,
         MatCommonModule,
         CommonModule,
-        EffectsModule.forFeature([Registerffects, LoginEffects]),
+        EffectsModule.forFeature([
+            Registerffects,
+            LoginEffects,
+            GetCurrentUserEffects,
+        ]),
         StoreModule.forFeature('auth', authReducer),
         AuthRoutingModule,
         BackendErrorsModule,
