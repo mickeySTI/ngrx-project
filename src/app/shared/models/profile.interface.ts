@@ -1,6 +1,6 @@
 export class ProfileInterface {
     userName: string;
     bio: string;
-    imgage: string;
+    image: string;
     following: boolean;
 }
