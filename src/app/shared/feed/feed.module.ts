@@ -1,3 +1,5 @@
+import { LoadingModule } from './../loading/loading.module';
+import { ErrorModule } from './../error/error.module';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -15,6 +17,8 @@ import { FeedService } from './services/feed.service';
         EffectsModule.forFeature([FeedEffects]),
         StoreModule.forFeature('feed', reducers),
         RouterModule,
+        ErrorModule,
+        LoadingModule,
     ],
     exports: [FeedComponent],
     providers: [FeedService],
