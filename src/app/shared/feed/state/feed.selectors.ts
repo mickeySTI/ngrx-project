@@ -2,10 +2,8 @@ import { AppStateInterface } from './../../state/app-state.intereface';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { FeedStateInterface } from './reducer/feed.reducer';
 
-export const feedFeatureSelector = createFeatureSelector<
-    AppStateInterface,
-    FeedStateInterface
->('feed');
+export const feedFeatureSelector =
+    createFeatureSelector<FeedStateInterface>('feed');
 
 export const isLoadingSelector = createSelector(
     feedFeatureSelector,
