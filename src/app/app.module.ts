@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './shared/services/auth-interceptor.service';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
     declarations: [AppComponent],
@@ -26,11 +27,14 @@ import { AuthInterceptor } from './shared/services/auth-interceptor.service';
         AuthModule,
         TopBarModule,
         AppRoutingModule,
-        StoreModule.forRoot({}),
+        StoreModule.forRoot({
+            router: routerReducer,
+        }),
         StoreDevtoolsModule.instrument({
             maxAge: 25,
             logOnly: environment.production,
         }),
+        StoreRouterConnectingModule.forRoot(),
         EffectsModule.forRoot([]),
         BrowserAnimationsModule,
         GlobalFeedModule,

@@ -11,6 +11,7 @@ import { AppStateInterface } from './../../../state/app-state.intereface';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { stringify, parseUrl } from 'query-string';
 
 @Component({
     selector: 'mc-feed',
@@ -36,7 +37,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.initilizeValues();
-        this.fetchData();
         this.initializeListeners();
     }
 
@@ -48,16 +48,25 @@ export class FeedComponent implements OnInit, OnDestroy {
     }
 
     initializeListeners(): void {
-        this.queryParamsSubscription = this.route.queryParamMap.subscribe(
+        this.queryParamsSubscription = this.route.queryParams.subscribe(
             (params: Params) => {
                 this.currentPage = Number(params.page || '1');
-                console.log('currentPage', this.currentPage);
+                this.fetchFeed();
             }
         );
     }
 
-    fetchData(): void {
-        this.store$.dispatch(onGetFeed({ url: this.apiUrlProps }));
+    fetchFeed(): void {
+        const offset = this.currentPage * this.limit - this.limit;
+        const parsedUrl = parseUrl(this.apiUrlProps);
+        const stringifiedParams = stringify({
+            limit: this.limit,
+            offset,
+            ...parsedUrl.query,
+        });
+        const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+        console.log('apiUrlWithParams', apiUrlWithParams);
+        this.store$.dispatch(onGetFeed({ url: apiUrlWithParams }));
     }
 
     ngOnDestroy(): void {

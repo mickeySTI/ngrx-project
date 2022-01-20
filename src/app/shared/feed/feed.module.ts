@@ -1,3 +1,4 @@
+import { PaginationModule } from './../pagination/pagination.module';
 import { LoadingModule } from './../loading/loading.module';
 import { ErrorModule } from './../error/error.module';
 import { RouterModule } from '@angular/router';
@@ -19,6 +20,7 @@ import { FeedService } from './services/feed.service';
         RouterModule,
         ErrorModule,
         LoadingModule,
+        PaginationModule,
     ],
     exports: [FeedComponent],
     providers: [FeedService],
