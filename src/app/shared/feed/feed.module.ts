@@ -1,3 +1,4 @@
+import { TagListModule } from './../tag-list/tag-list.module';
 import { PaginationModule } from './../pagination/pagination.module';
 import { LoadingModule } from './../loading/loading.module';
 import { ErrorModule } from './../error/error.module';
@@ -21,6 +22,7 @@ import { FeedService } from './services/feed.service';
         ErrorModule,
         LoadingModule,
         PaginationModule,
+        TagListModule,
     ],
     exports: [FeedComponent],
     providers: [FeedService],

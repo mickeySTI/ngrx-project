@@ -28,7 +28,8 @@ export class FeedComponent implements OnInit, OnDestroy {
     baseUrl: string;
     queryParamsSubscription: Subscription;
     currentPage: number;
-
+    // Added this to confirm that tags worked since none of the articles had tags
+    testTags: string[] = ['this tag', 'that tag'];
     constructor(
         private store$: Store<AppStateInterface>,
         private router: Router,
