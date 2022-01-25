@@ -1,25 +1,28 @@
 import { FeedTogglerModule } from './../shared/feed-toggler/feed-toggler.module';
 import { PopTagsModule } from './../shared/pop-tags/pop-tags.module';
-import { TagListModule } from './../shared/tag-list/tag-list.module';
 import { BannerModule } from './../shared/banner/banner.module';
 import { FeedModule } from './../shared/feed/feed.module';
-import { FeedComponent } from './../shared/feed/components/feed/feed.component';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { YourFeedComponent } from './components/your-feed/your-feed.component';
 
-import { GlobalFeedRoutingModule } from './global-feed-routing.module';
-import { GlobalFeedComponent } from './components/global-feed/global-feed.component';
+const routes: Routes = [
+    {
+        path: 'feed',
+        component: YourFeedComponent,
+    },
+];
 
 @NgModule({
+    declarations: [YourFeedComponent],
     imports: [
         CommonModule,
-        GlobalFeedRoutingModule,
+        RouterModule.forChild(routes),
         FeedModule,
         BannerModule,
-        TagListModule,
         PopTagsModule,
         FeedTogglerModule,
     ],
-    declarations: [GlobalFeedComponent],
 })
-export class GlobalFeedModule {}
+export class YourFeedModule {}

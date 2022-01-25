@@ -1,3 +1,5 @@
+import { TagFeedModule } from './tag-feed/tag-feed.module';
+import { YourFeedModule } from './your-feed/your-feed.module';
 import { FeedModule } from './shared/feed/feed.module';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
 import { PersistanceService } from './shared/services/persistance.service';
@@ -38,6 +40,8 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
         EffectsModule.forRoot([]),
         BrowserAnimationsModule,
         GlobalFeedModule,
+        YourFeedModule,
+        TagFeedModule,
         FeedModule,
     ],
     providers: [
